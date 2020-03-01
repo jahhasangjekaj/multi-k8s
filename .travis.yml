@@ -3,27 +3,25 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t jahhasangjekaj/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t jhasangjekaj/react-test -f ./client/Dockerfile.dev ./client
 script:
-  #- docker run -e CI=true jahhasangjekaj/react-test npm run test -- --coverage
-  - docker run -e CI=true jahhasangjekaj/react-test npm test -- --coverage
+  #- docker run -e CI=true jhasangjekaj/react-test npm run test -- --coverage
+  - docker run -e CI=true jhasangjekaj/react-test npm test -- --coverage
 
 after_success:
-    - echo "$DOCKER_ID"
-    - echo "$DOCKER_PASSWORD
-    - docker build -t jahhasangjekaj/multi-client ./client
-    - docker build -t jahhasangjekaj/multi-nginx ./nginx
-    - docker build -t jahhasangjekaj/multi-server ./server
-    - docker build -t jahhasangjekaj/multi-worker ./worker
+    - docker build -t jhasangjekaj/multi-client ./client
+    - docker build -t jhasangjekaj/multi-nginx ./nginx
+    - docker build -t jhasangjekaj/multi-server ./server
+    - docker build -t jhasangjekaj/multi-worker ./worker
 
     # Log in to the docker cli
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     # Take those images and push them to the docker hub
-    - docker push jahhasangjekaj/multi-client
-    - docker push jahhasangjekaj/multi-nginx
-    - docker push jahhasangjekaj/multi-server
-    - docker push jahhasangjekaj/multi-worker
+    - docker push jhasangjekaj/multi-client
+    - docker push jhasangjekaj/multi-nginx
+    - docker push jhasangjekaj/multi-server
+    - docker push jhasangjekaj/multi-worker
 
 # Deploy to production only when thera are changes to master branch
 # deploy:
