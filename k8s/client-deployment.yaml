@@ -6,14 +6,14 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      compponent: web
+      component: web
   template:
     metadata:
       labels:
-        compponent: web
+        component: web
     spec:
       containers:
         - name: client
-          image: jhasangjekaj/multi-client
+          image: jahhasangjekaj/multi-client
           ports:
             - containerPort: 3000

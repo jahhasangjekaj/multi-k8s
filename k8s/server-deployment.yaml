@@ -6,32 +6,32 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      compponent: server
+      component: server
   template:
     metadata:
       labels:
-        compponent: server
+        component: server
     spec:
       containers:
         - name: server
-          image: jhasangjekaj/multi-server
+          image: jahhasangjekaj/multi-server
+          ports:
+            - containerPort: 5000
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
             - name: REDIS_PORT
-              value: "6379"
+              value: '6379'
             - name: PGUSER
               value: postgres
             - name: PGHOST
               value: postgres-cluster-ip-service
             - name: PGPORT
-              value: "5432"
+              value: '5432'
             - name: PGDATABASE
-              value: postgress
+              value: postgres
             - name: PGPASSWORD
-              valueFrom: 
+              valueFrom:
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
-          ports:
-            - containerPort: 5000
