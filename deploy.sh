@@ -1,18 +1,18 @@
-docker build -t jahhasangjekaj/multi-client:latest -t jahhasangjekaj/multi-client:$SHA -f ./client/Dockerfile ./client
-docker build -t jahhasangjekaj/multi-server:latest -t jahhasangjekaj/multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t jahhasangjekaj/multi-worker:latest -t jahhasangjekaj/multi-worker:$SHA -f ./worker/Dockerfile ./worker
+docker build -t jhasangjekaj/multi-client:latest -t jhasangjekaj/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t jhasangjekaj/multi-server:latest -t jhasangjekaj/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t jhasangjekaj/multi-worker:latest -t jhasangjekaj/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
-docker push jahhasangjekaj/multi-client:latest
-docker push jahhasangjekaj/multi-client:$SHA
+docker push jhasangjekaj/multi-client:latest
+docker push jhasangjekaj/multi-client:$SHA
 
-docker push jahhasangjekaj/multi-server:latest
-docker push jahhasangjekaj/multi-server:$SHA
+docker push jhasangjekaj/multi-server:latest
+docker push jhasangjekaj/multi-server:$SHA
 
-docker push jahhasangjekaj/multi-worker:latest
-docker push jahhasangjekaj/multi-worker:$SHA
+docker push jhasangjekaj/multi-worker:latest
+docker push jhasangjekaj/multi-worker:$SHA
 
 kubectl apply -f k8s
 
-kubectl set image deployments/client-deployment client=jahhasangjekaj/multi-client:$SHA
-kubectl set image deployments/server-deployment server=jahhasangjekaj/multi-server:$SHA
-kubectl set image deployments/worker-deployment worker=jahhasangjekaj/multi-worker:$SHA
+kubectl set image deployments/client-deployment client=jhasangjekaj/multi-client:$SHA
+kubectl set image deployments/server-deployment server=jhasangjekaj/multi-server:$SHA
+kubectl set image deployments/worker-deployment worker=jhasangjekaj/multi-worker:$SHA
