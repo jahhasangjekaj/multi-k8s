@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: jhcloud.org-tls
+spec:
+  secretName: jhcloud.org
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: jhcloud.org
+  dnsNames:
+    - jhcloud.org
+    - www.jhcloud.org
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - jhcloud.org
+          - www.jhcloud.org
